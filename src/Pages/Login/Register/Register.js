@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
 
@@ -26,11 +28,9 @@ const Register = () => {
             await updateProfile({ displayName: name })
         }
         else{
-            
+            toast("Please Accept Our Terms and Conditions", {position : 'bottom-right'})
         }
     }
-
-    console.log(agreed);
 
     if (loading) return <Loading></Loading>
 
@@ -137,7 +137,6 @@ const Register = () => {
 
                             <div className="text-center lg:text-left">
                                 <input
-                                    disabled
                                     type="submit"
                                     className="inline-block btn px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" value="Register" />
                                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
@@ -151,6 +150,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </section>
     );
 };
