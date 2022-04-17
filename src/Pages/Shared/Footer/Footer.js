@@ -81,7 +81,7 @@ const Footer = () => {
 
             <div className="text-center p-4" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
                 © {year} Copyright
-                <a className="text-whitehite" href="/"> @ Smart Photography </a>
+                <a className="text-whitehite" href="/"> @ Saad Photography </a>
             </div>
         </footer>
     );

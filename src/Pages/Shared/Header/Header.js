@@ -1,9 +1,14 @@
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
 import logo from '../../../Images/picasa.png'
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const [user] = useAuthState(auth)
 
     return (
         <div className="bg-gray-900">
@@ -11,14 +16,14 @@ const Header = () => {
                 <div className="relative flex items-center justify-between">
                     <div className="flex items-center">
                         <Link
-                            to="/"
+                            to="/home"
                             aria-label="Company"
                             title="Company"
                             className="inline-flex items-center mr-8"
                         >
                             <img className="h-10" src={logo} alt="" />
                             <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                                Smart PhotoGraphy
+                                Saad PhotoGraphy
                             </span>
                         </Link>
                         <ul className="md:flex items-center hidden space-x-8 lg:flex">
@@ -54,28 +59,35 @@ const Header = () => {
                             </li>
                         </ul>
                     </div>
-                    <ul className="items-center hidden space-x-8 lg:flex">
-                        <li>
-                            <Link
-                                to="/login"
-                                aria-label="Sign in"
-                                title="Sign in"
-                                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
-                            >
-                                Sign in
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/register"
-                                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none"
-                                aria-label="Sign up"
-                                title="Sign up"
-                            >
-                                Sign up
-                            </Link>
-                        </li>
-                    </ul>
+                    {
+                        user ?
+                            <div className="items-center hidden space-x-8 lg:flex">
+                                {user?.photoURL && <img className="h-9 rounded-full" src={user?.photoURL} alt="" /> }
+                                <button onClick={() => signOut(auth) } className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none">Sign Out</button>
+                            </div> :
+                            <ul className="items-center hidden space-x-8 lg:flex">
+                                <li>
+                                    <Link
+                                        to="/login"
+                                        aria-label="Sign in"
+                                        title="Sign in"
+                                        className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
+                                    >
+                                        Sign in
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/register"
+                                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none"
+                                        aria-label="Sign up"
+                                        title="Sign up"
+                                    >
+                                        Sign up
+                                    </Link>
+                                </li>
+                            </ul>
+                    }
                     <div className="lg:hidden">
                         <button
                             aria-label="Open Menu"
@@ -111,7 +123,7 @@ const Header = () => {
                                             >
                                                 <img className="h-10" src={logo} alt="" />
                                                 <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                                                    Smart Photography
+                                                    Saad Photography
                                                 </span>
                                             </Link>
                                         </div>
@@ -133,7 +145,7 @@ const Header = () => {
                                     </div>
                                     <nav>
                                         <ul className="space-y-4">
-                                            
+
                                             <li>
                                                 <Link
                                                     to="/blogs"

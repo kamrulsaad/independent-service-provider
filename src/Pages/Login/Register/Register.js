@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
@@ -18,6 +18,8 @@ const Register = () => {
     const loading = emailLoading || googleLoading || updating;
     const error = emailError || googleError || updatingError;
 
+    const navigate = useNavigate();
+
     const handleFormSubmit = async e => {
         e.preventDefault()
         const name = e.target.name.value
@@ -27,13 +29,14 @@ const Register = () => {
             createUserWithEmail(email, password)
             await updateProfile({ displayName: name })
         }
-        else{
-            toast("Please Accept Our Terms and Conditions", {position : 'bottom-right'})
+        else {
+            toast("Please Accept Our Terms and Conditions", { position: 'bottom-right' })
         }
     }
 
-    if (loading) return <Loading></Loading>
+    useEffect(() => { if (user) navigate('/home') }, [navigate, user])
 
+    if (loading) return <Loading></Loading>
 
     return (
         <section className="h-screen">
@@ -119,12 +122,15 @@ const Register = () => {
                                     placeholder="Password"
                                     required
                                 />
+                                <p className='text-red-600 mt-4 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out'>{error && error?.message}</p>
                             </div>
 
                             <div className="mb-6">
                                 <div className="form-group form-check">
+                                    
                                     <input
-                                        onChange={() => setAgreed(!agreed)}
+                                        onClick={() => setAgreed(!agreed)}
+                                        checked={agreed}
                                         type="checkbox"
                                         className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                         id="exampleCheck2"
@@ -137,20 +143,22 @@ const Register = () => {
 
                             <div className="text-center lg:text-left">
                                 <input
+                                    disabled={!agreed}
                                     type="submit"
-                                    className="inline-block btn px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" value="Register" />
+                                    className={`inline-block btn px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ${agreed ? 'opacity-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'}`} value="Register" />
                                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                                     Already Registered?
                                     <Link
                                         to="/login"
                                         className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out">Login</Link>
                                 </p>
+                                
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </section>
     );
 };
