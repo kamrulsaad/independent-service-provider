@@ -62,8 +62,8 @@ const Header = () => {
                     {
                         user ?
                             <div className="items-center hidden space-x-8 lg:flex">
-                                {user?.photoURL && <img className="h-9 rounded-full" src={user?.photoURL} alt="" /> }
-                                <button onClick={() => signOut(auth) } className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none">Sign Out</button>
+                                {user?.photoURL && <img className="h-9 rounded-full" src={user?.photoURL} alt="" />}
+                                <button onClick={() => signOut(auth)} className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none">Sign Out</button>
                             </div> :
                             <ul className="items-center hidden space-x-8 lg:flex">
                                 <li>
@@ -176,26 +176,35 @@ const Header = () => {
                                                     Checkout
                                                 </Link>
                                             </li>
-                                            <li>
-                                                <Link
-                                                    to="/login"
-                                                    aria-label="Sign in"
-                                                    title="Sign in"
-                                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
-                                                >
-                                                    Sign in
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    to="/register"
-                                                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                                                    aria-label="Sign up"
-                                                    title="Sign up"
-                                                >
-                                                    Sign up
-                                                </Link>
-                                            </li>
+                                            {
+                                                user ?
+                                                    <div className="items-center  lg:hidden">
+                                                        {user?.photoURL && <img className="h-9 rounded-full" src={user?.photoURL} alt="" />}
+                                                        <button onClick={() => signOut(auth)} className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide my-3 ml-0 text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none">Sign Out</button>
+                                                    </div> :
+                                                    <div>
+                                                        <li className="mb-1">
+                                                            <Link
+                                                                to="/login"
+                                                                aria-label="Sign in"
+                                                                title="Sign in"
+                                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
+                                                            >
+                                                                Sign in
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link
+                                                                to="/register"
+                                                                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                                                aria-label="Sign up"
+                                                                title="Sign up"
+                                                            >
+                                                                Sign up
+                                                            </Link>
+                                                        </li>
+                                                    </div>
+                                            }
                                         </ul>
                                     </nav>
                                 </div>

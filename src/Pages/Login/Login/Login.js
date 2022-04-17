@@ -1,7 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
+
+    const emailRef = useRef('')
+
+    const navigate = useNavigate()
+
+    const [googleSignIn, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth)
+    const [emailPasswordSignIn, emailUser, emailLoading, emailError] = useSignInWithEmailAndPassword(auth)
+    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+
+    const user = googleUser || emailUser
+    const error = googleError || emailError || resetError
+    const loading = emailLoading || googleLoading || sending
+
+    const handleLoginSubmit = e => {
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+        emailPasswordSignIn(email,password)
+    }
+
+    useEffect(() => { if (user) navigate('/home') }, [navigate, user])
+    
+    if(loading) return <Loading></Loading>
+
+    const handlePasswordReset = async () => {
+        const email = emailRef.current.value;
+        await sendPasswordResetEmail(email)
+        console.log(resetError);
+        toast( resetError?.message || 'Please Check Your Email to reset your password'  , {position: 'top-center'})
+    }
+
     return (
         <section className="h-screen">
             <div className="px-6 h-full text-gray-800">
@@ -18,10 +53,11 @@ const Login = () => {
                         />
                     </div>
                     <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                        <form className='mb-5'>
+                        <form onSubmit={handleLoginSubmit} className='mb-5'>
                             <div className="flex flex-row items-center justify-center lg:justify-start">
                                 <p className="text-lg mb-0 mr-4">Sign in with:</p>
                                 <button
+                                    onClick={() => googleSignIn() }
                                     type="button"
                                     data-mdb-ripple="true"
                                     data-mdb-ripple-color="light"
@@ -58,42 +94,36 @@ const Login = () => {
                             <div className="mb-6">
                                 <input
                                     type="text"
+                                    name='email'
+                                    ref={emailRef}
+                                    required
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     id="exampleFormControlInput1"
                                     placeholder="Email address"
                                 />
                             </div>
 
-                            <div className="mb-6">
+                            <div className="mb-4">
                                 <input
                                     type="password"
+                                    name='password'
+                                    required
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     id="exampleFormControlInput2"
                                     placeholder="Password"
                                 />
+                                 <p className='text-red-600 mt-4 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out'>{error && error?.message}</p>
                             </div>
 
-                            <div className="flex justify-between items-center mb-6">
-                                <div className="form-group form-check">
-                                    <input
-                                        type="checkbox"
-                                        className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                        id="exampleCheck2"
-                                    />
-                                    <label className="form-check-label inline-block text-gray-800" htmlFor="exampleCheck2"
-                                    >Remember me</label
-                                    >
-                                </div>
-                                <a href="#!" className="text-gray-800">Forgot password?</a>
+                            <div className="mb-6">
+                                <p onClick={handlePasswordReset} className="text-gray-800 cursor-pointer hover:text-red-700 transition-all duration-200">Forgot password?</p>
                             </div>
 
                             <div className="text-center lg:text-left">
-                                <button
-                                    type="button"
-                                    className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                >
-                                    Login
-                                </button>
+                                <input
+                                    type="submit"
+                                    className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
+                                    value="Log In"/>
                                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                                     Don't have an account?
                                     <Link
@@ -107,6 +137,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </section>
     );
 };

@@ -25,13 +25,9 @@ const Register = () => {
         const name = e.target.name.value
         const email = e.target.email.value
         const password = e.target.password.value
-        if (agreed) {
-            createUserWithEmail(email, password)
-            await updateProfile({ displayName: name })
-        }
-        else {
-            toast("Please Accept Our Terms and Conditions", { position: 'bottom-right' })
-        }
+        createUserWithEmail(email, password)
+        await updateProfile({ displayName: name })
+        toast("Verification email sent, please check your email account" + name , { position: 'bottom-right' })
     }
 
     useEffect(() => { if (user) navigate('/home') }, [navigate, user])
@@ -127,7 +123,7 @@ const Register = () => {
 
                             <div className="mb-6">
                                 <div className="form-group form-check">
-                                    
+
                                     <input
                                         onClick={() => setAgreed(!agreed)}
                                         checked={agreed}
@@ -152,7 +148,7 @@ const Register = () => {
                                         to="/login"
                                         className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out">Login</Link>
                                 </p>
-                                
+
                             </div>
                         </form>
                     </div>
