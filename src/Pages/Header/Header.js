@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <nav className="relative w-full flex items-center justify-between md:justify-around py-2 bg-gray-700 text-gray
+        <nav className="relative w-full flex items-center justify-between md:justify-around py-3 bg-gray-700 text-gray
         -100 hover:text-gray-100 focus:text-gray-100 shadow-lg navbar navbar-expand-lg navbar-light">
             <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                 <button className=" navbar-toggler text-gray-100 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -17,22 +17,22 @@ const Header = () => {
                 </button>
                 <div className="collapse navbar-collapse flex-col md:flex-row justify-between md:px-8 items-center text-center" id="navbarSupportedContent">
                     <div className='p-3'>
-                        <Link className="text-xl md:m-0 mb-7 text-gray-100" to="">Navbar</Link>
+                        <Link className="text-xl md:m-0 mb-7 hover:text-red-500 duration-500 text-red-100" to="">Smart Photography</Link>
                     </div>
                     <ul className="navbar-nav flex items-center gap-3 md:gap-0 flex-col pl-0 list-style-none mr-auto">
                         <li className="nav-item px-2 py-1">
-                            <Link className="nav-link text-slate-100" aria-current="page" to="#">Home</Link>
+                            <Link className="nav-link hover:text-slate-400 duration-300 text-slate-100" aria-current="page" to="#">Home</Link>
                         </li>
                         <li className="nav-item pr-2 py-1">
-                            <Link className="nav-link text-gray-100 hover:text-gray-100 focus:text-gray-100 p-0" to="#">About Me</Link>
+                            <Link className="nav-link text-gray-100 hover:text-gray-400 duration-300 focus:text-gray-100 p-0" to="#">About Me</Link>
                         </li>
                         <li className="nav-item pr-2 py-1">
-                            <Link className="nav-link text-gray-100 hover:text-gray-100 focus:text-gray-100 p-0" to="#">Blogs</Link>
+                            <Link className="nav-link text-gray-100 hover:text-gray-400 duration-300 focus:text-gray-100 p-0" to="#">Blogs</Link>
                         </li>
                         <li className="nav-item pr-2 py-1">
-                            <Link className="nav-link text-gray-100 hover:text-gray-100 focus:text-gray-100 p-0" to="#">Login</Link>
+                            <Link className="nav-link text-gray-100 hover:text-slate-400 duration-300 focus:text-gray-100 p-0" to="#">Login</Link>
                         </li>
-                        <button type="button" class="inline-block mt-2 md:mt-0 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Sign Up</button>
+                        <button type="button" class="inline-block mt-2 md:mt-0 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-300 ease-in-out">Sign Up</button>
                     </ul>
                 </div>
             </div>
