@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
     return (
@@ -56,12 +57,12 @@ const Pricing = () => {
                         </div>
                     </div>
                     <div>
-                        <a
-                            href="/"
+                        <Link
+                            to="/checkout"
                             className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
                         >
                             Buy Starter
-                        </a>
+                        </Link>
                         <p className="max-w-xs mt-6 text-xs text-gray-600 sm:text-sm sm:text-center sm:max-w-sm sm:mx-auto">
                             Birthdays, Aniversaries, Short Wedding Ceremonies, etc.
                         </p>
@@ -86,12 +87,12 @@ const Pricing = () => {
                         </div>
                     </div>
                     <div>
-                        <a
-                            href="/"
+                        <Link
+                            to="/checkout"
                             className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none"
                         >
                             Buy Pro
-                        </a>
+                        </Link>
                         <p className="max-w-xs mt-6 text-xs text-gray-600 sm:text-sm sm:text-center sm:max-w-sm sm:mx-auto">
                             Weddings, Picnics, Fests, Cultural Ocassions. Best Choice till now.
                         </p>
@@ -111,12 +112,12 @@ const Pricing = () => {
                         </div>
                     </div>
                     <div>
-                        <a
-                            href="/"
+                        <Link
+                            to="/checkout"
                             className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
                         >
                             Buy Business
-                        </a>
+                        </Link>
                         <p className="max-w-xs mt-6 text-xs text-gray-600 sm:text-sm sm:text-center sm:max-w-sm sm:mx-auto">
                             Business Trips, Mega Events, Month Long occasions, Field Trips, etc.
                         </p>

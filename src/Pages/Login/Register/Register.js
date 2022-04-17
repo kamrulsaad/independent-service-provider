@@ -1,7 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
+import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
+
+    const [agreed, setAgreed] = useState(false)
+
+    const [createUserWithEmail, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth)
+    const [updateProfile, updating, updatingError] = useUpdateProfile(auth)
+
+    const user = emailUser || googleUser;
+    const loading = emailLoading || googleLoading || updating;
+    const error = emailError || googleError || updatingError;
+
+    const handleFormSubmit = async e => {
+        e.preventDefault()
+        const name = e.target.name.value
+        const email = e.target.email.value
+        const password = e.target.password.value
+        if (agreed) {
+            createUserWithEmail(email, password)
+            await updateProfile({ displayName: name })
+        }
+        else{
+            
+        }
+    }
+
+    console.log(agreed);
+
+    if (loading) return <Loading></Loading>
+
+
     return (
         <section className="h-screen">
             <div className="px-6 h-full text-gray-800">
@@ -18,10 +51,11 @@ const Register = () => {
                         />
                     </div>
                     <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                        <form className='mb-5'>
+                        <form className='mb-5' onSubmit={handleFormSubmit}>
                             <div className="flex flex-row items-center justify-center lg:justify-start">
                                 <p className="text-lg mb-0 mr-4">Sign in with:</p>
                                 <button
+                                    onClick={() => signInWithGoogle()}
                                     type="button"
                                     data-mdb-ripple="true"
                                     data-mdb-ripple-color="light"
@@ -58,6 +92,7 @@ const Register = () => {
                             <div className="mb-6">
                                 <input
                                     type="text"
+                                    name='name'
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     id="exampleFormControlInput3"
                                     placeholder="Your Name"
@@ -66,25 +101,30 @@ const Register = () => {
 
                             <div className="mb-6">
                                 <input
-                                    type="text"
+                                    type="email"
+                                    name='email'
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     id="exampleFormControlInput1"
                                     placeholder="Email address"
+                                    required
                                 />
                             </div>
 
                             <div className="mb-6">
                                 <input
                                     type="password"
+                                    name='password'
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                     id="exampleFormControlInput2"
                                     placeholder="Password"
+                                    required
                                 />
                             </div>
 
-                            <div className="flex justify-between items-center mb-6">
+                            <div className="mb-6">
                                 <div className="form-group form-check">
                                     <input
+                                        onChange={() => setAgreed(!agreed)}
                                         type="checkbox"
                                         className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                         id="exampleCheck2"
@@ -93,16 +133,13 @@ const Register = () => {
                                         I Accept the Terms and Conditions
                                     </label>
                                 </div>
-                                <a href="#!" className="text-gray-800">Forgot password?</a>
                             </div>
 
                             <div className="text-center lg:text-left">
-                                <button
-                                    type="button"
-                                    className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                >
-                                    Register
-                                </button>
+                                <input
+                                    disabled
+                                    type="submit"
+                                    className="inline-block btn px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" value="Register" />
                                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                                     Already Registered?
                                     <Link
