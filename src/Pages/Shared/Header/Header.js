@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <nav className="relative w-full flex items-center justify-between md:justify-around py-3 bg-gray-700 text-gray
+        <nav className="w-full sticky top-0 flex items-center z-50 justify-between md:justify-around py-3 bg-gray-700 text-gray
         -100 hover:text-gray-100 focus:text-gray-100 shadow-lg navbar navbar-expand-lg navbar-light">
             <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                 <button className=" navbar-toggler text-gray-100 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
