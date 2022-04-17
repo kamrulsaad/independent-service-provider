@@ -32,7 +32,7 @@ const Header = () => {
                         <li className="nav-item pr-2 py-1">
                             <Link className="nav-link text-gray-100 hover:text-slate-400 duration-300 focus:text-gray-100 p-0" to="#">Login</Link>
                         </li>
-                        <button type="button" class="inline-block mt-2 md:mt-0 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-300 ease-in-out">Sign Up</button>
+                        <button type="button" className="inline-block mt-2 md:mt-0 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-300 ease-in-out">Sign Up</button>
                     </ul>
                 </div>
             </div>
