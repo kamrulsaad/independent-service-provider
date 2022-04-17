@@ -58,7 +58,7 @@ const Pricing = () => {
                     </div>
                     <div>
                         <Link
-                            to="/checkout"
+                            to="/contact"
                             className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
                         >
                             Buy Starter
@@ -88,7 +88,7 @@ const Pricing = () => {
                     </div>
                     <div>
                         <Link
-                            to="/checkout"
+                            to="/contact"
                             className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none"
                         >
                             Buy Pro
@@ -113,7 +113,7 @@ const Pricing = () => {
                     </div>
                     <div>
                         <Link
-                            to="/checkout"
+                            to="/contact"
                             className="inline-flex items-center justify-center w-full h-12 px-6 mt-6 font-medium tracking-wide text-white transition duration-200 bg-gray-800 rounded shadow-md hover:bg-gray-900 focus:shadow-outline focus:outline-none"
                         >
                             Buy Business
