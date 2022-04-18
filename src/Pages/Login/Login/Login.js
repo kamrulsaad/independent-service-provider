@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
@@ -10,14 +10,17 @@ const Login = () => {
     const emailRef = useRef('')
 
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     const [googleSignIn, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth)
     const [emailPasswordSignIn, emailUser, emailLoading, emailError] = useSignInWithEmailAndPassword(auth)
     const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+    const [facebookSignIn, facebookUser, fbLoading, fbError] = useSignInWithFacebook(auth)
 
-    const user = googleUser || emailUser
-    const error = googleError || emailError || resetError
-    const loading = emailLoading || googleLoading || sending
+    const user = googleUser || emailUser || facebookUser
+    const error = googleError || emailError || resetError || fbError
+    const loading = emailLoading || googleLoading || sending || fbLoading
 
     const handleLoginSubmit = e => {
         e.preventDefault()
@@ -26,7 +29,7 @@ const Login = () => {
         emailPasswordSignIn(email,password)
     }
 
-    useEffect(() => { if (user) navigate('/home') }, [navigate, user])
+    useEffect(() => { if (user) navigate(from, {replace: true}) }, [navigate, user, from])
     
     if(loading) return <Loading></Loading>
 
@@ -68,6 +71,7 @@ const Login = () => {
                                 </button>
 
                                 <button
+                                    onClick={() => facebookSignIn()  }
                                     type="button"
                                     data-mdb-ripple="true"
                                     data-mdb-ripple-color="light"

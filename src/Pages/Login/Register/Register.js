@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
@@ -19,6 +19,8 @@ const Register = () => {
     const error = emailError || googleError || updatingError;
 
     const navigate = useNavigate();
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     const handleFormSubmit = async e => {
         e.preventDefault()
@@ -30,7 +32,7 @@ const Register = () => {
         toast("Verification email sent, please check your email account" + name , { position: 'bottom-right' })
     }
 
-    useEffect(() => { if (user) navigate('/home') }, [navigate, user])
+    useEffect(() => { if (user) navigate(from, {replace : true}) }, [navigate, from, user])
 
     if (loading) return <Loading></Loading>
 

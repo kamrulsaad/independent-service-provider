@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "name": "Starter",
+        "services": ["One Full Day Service", "10 GB of storage", "Paid Editting"],
+        "pricing": 38,
+        "duration": "day",
+        "description": "Birthdays, Aniversaries, Short Wedding Ceremonies, etc.",
+        "img" : "https://images.pexels.com/photos/3184305/pexels-photo-3184305.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+    },
+    {
+        "id": 2,
+        "name": "Pro",
+        "services": ["One Full Day Service", "100 GB of storage", "Free Editting"],
+        "pricing": 250,
+        "duration": "week",
+        "description": "Weddings, Picnics, Fests, Cultural Ocassions. Best Choice till now.",
+        "img" : "https://images.pexels.com/photos/3183181/pexels-photo-3183181.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+    },
+    {
+        "id": 3,
+        "name": "Business",
+        "services": ["Unlimited Pictures", "500 GB of storage", "24/7 Service"],
+        "pricing": 1200,
+        "duration": "mo",
+        "description": "Business Trips, Mega Events, Month Long occasions, Field Trips, etc.",
+        "img" : "https://images.pexels.com/photos/3182743/pexels-photo-3182743.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+    }
+]
