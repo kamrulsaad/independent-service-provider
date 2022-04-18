@@ -9,6 +9,8 @@
   - [Built with](#built-with)
   - [Features](#features)
 
+----
+
 ## Overview
 
 Welcome to my project on Single Photography Service Provider Website.
@@ -23,6 +25,8 @@ Welcome to my project on Single Photography Service Provider Website.
 
 ![Screenshot of the Website HomePage](./src/Images/screenshot.jpeg "Checkout the live site for more detailed view and funtionality")
 
+----
+
 ## My Process
 
 I have built this website following the requirements provided.
@@ -36,6 +40,8 @@ I have built this website following the requirements provided.
 - `tailwindCSS`
 - `tw-elements`
 - `react-toastify` 
+
+------
 
 ## Features
 
