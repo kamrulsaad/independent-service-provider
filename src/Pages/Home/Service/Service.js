@@ -7,7 +7,7 @@ const Service = ({service}) => {
     const { id, name, pricing, img, description, duration} = service
 
     return (
-        <div className="flex flex-col transition duration-300 bg-white rounded shadow-sm hover:shadow">
+        <div className="flex flex-col transition duration-300 hover:scale-110 bg-white rounded shadow-sm hover:shadow-lg">
             <div className="relative w-full h-48">
                 <img
                     src={img}
