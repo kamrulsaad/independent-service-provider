@@ -2,7 +2,6 @@
     {
         "id": 1,
         "name": "Starter",
-        "services": ["One Full Day Service", "10 GB of storage", "Paid Editting"],
         "pricing": 38,
         "duration": "day",
         "description": "Birthdays, Aniversaries, Short Wedding Ceremonies, etc.",
@@ -11,7 +10,6 @@
     {
         "id": 2,
         "name": "Pro",
-        "services": ["One Full Day Service", "100 GB of storage", "Free Editting"],
         "pricing": 250,
         "duration": "week",
         "description": "Weddings, Picnics, Fests, Cultural Ocassions. Best Choice till now.",
@@ -20,7 +18,6 @@
     {
         "id": 3,
         "name": "Business",
-        "services": ["Unlimited Pictures", "500 GB of storage", "24/7 Service"],
         "pricing": 1200,
         "duration": "mo",
         "description": "Business Trips, Mega Events, Month Long occasions, Field Trips, etc.",
