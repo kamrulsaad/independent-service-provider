@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
-import logo from '../../../Images/picasa.png'
+import logo from '../../../Images/BannerLogo.png'
+import CustomLink from "../CustomLink/CustomLink";
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,34 +29,34 @@ const Header = () => {
                         </Link>
                         <ul className="md:flex items-center hidden space-x-8 lg:flex">
                             <li>
-                                <Link
+                                <CustomLink
                                     to="/blogs"
                                     aria-label="Our product"
                                     title="Our product"
                                     className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
                                 >
                                     Blogs
-                                </Link>
+                                </CustomLink>
                             </li>
                             <li>
-                                <Link
+                                <CustomLink
                                     to="/about"
                                     aria-label="Our product"
                                     title="Our product"
                                     className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
                                 >
                                     About Me
-                                </Link>
+                                </CustomLink>
                             </li>
                             <li>
-                                <Link
+                                <CustomLink
                                     to="/contact"
                                     aria-label="About Me"
                                     title="About Me"
                                     className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
                                 >
                                     Contact
-                                </Link>
+                                </CustomLink>
                             </li>
                         </ul>
                     </div>
@@ -67,24 +68,24 @@ const Header = () => {
                             </div> :
                             <ul className="items-center hidden space-x-8 lg:flex">
                                 <li>
-                                    <Link
+                                    <CustomLink
                                         to="/login"
                                         aria-label="Sign in"
                                         title="Sign in"
                                         className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-400"
                                     >
                                         Sign in
-                                    </Link>
+                                    </CustomLink>
                                 </li>
                                 <li>
-                                    <Link
+                                    <CustomLink
                                         to="/register"
                                         className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none"
                                         aria-label="Sign up"
                                         title="Sign up"
                                     >
                                         Sign up
-                                    </Link>
+                                    </CustomLink>
                                 </li>
                             </ul>
                     }
@@ -93,8 +94,7 @@ const Header = () => {
                             aria-label="Open Menu"
                             title="Open Menu"
                             className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline"
-                            onClick={() => setIsMenuOpen(true)}
-                        >
+                            onClick={() => setIsMenuOpen(true)}>
                             <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
                                 <path
                                     fill="currentColor"
@@ -147,61 +147,64 @@ const Header = () => {
                                         <ul className="space-y-4">
 
                                             <li>
-                                                <Link
+                                                <CustomLink
                                                     to="/blogs"
                                                     aria-label="Our product"
                                                     title="Our product"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                                 >
                                                     Blogs
-                                                </Link>
+                                                </CustomLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <CustomLink
                                                     to="/about"
                                                     aria-label="Product pricing"
                                                     title="Product pricing"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                                 >
                                                     About Me
-                                                </Link>
+                                                </CustomLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <CustomLink
                                                     to="/contact"
                                                     aria-label="About Me"
                                                     title="About Me"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                                 >
                                                     Contact
-                                                </Link>
+                                                </CustomLink>
                                             </li>
                                             {
                                                 user ?
                                                     <div className="items-center  lg:hidden">
-                                                        {user?.photoURL && <img className="h-9 rounded-full" src={user?.photoURL} alt="" />}
+                                                        {user?.photoURL 
+                                                        && 
+                                                        <img className="h-9 rounded-full" src={user?.photoURL} alt="" />}
+
                                                         <button onClick={() => signOut(auth)} className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide my-3 ml-0 text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none">Sign Out</button>
                                                     </div> :
                                                     <div>
                                                         <li className="mb-1">
-                                                            <Link
+                                                            <CustomLink
                                                                 to="/login"
                                                                 aria-label="Sign in"
                                                                 title="Sign in"
                                                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-purple-400"
                                                             >
                                                                 Sign in
-                                                            </Link>
+                                                            </CustomLink>
                                                         </li>
                                                         <li>
-                                                            <Link
+                                                            <CustomLink
                                                                 to="/register"
                                                                 className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                                                 aria-label="Sign up"
                                                                 title="Sign up"
                                                             >
                                                                 Sign up
-                                                            </Link>
+                                                            </CustomLink>
                                                         </li>
                                                     </div>
                                             }

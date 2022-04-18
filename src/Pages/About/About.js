@@ -29,8 +29,8 @@ const About = () => {
                         My 2022 Resolutions
                     </h5>
                     <p className="mb-5 text-gray-800">
-                        <span className="font-bold">One Dream, </span> 
-                        to be the best in the field of photography and web development. To excel is my only goal for this year. No turning back to the past. Only moving forward with what is today to build the better future.
+                        <span className="font-bold">One Dream: </span> 
+                        To be the best in the field of photography and web development. To excel is my only goal for this year. No turning back to the past. Only moving forward with what is today to build the better future.
                     </p>
                     <div className="flex items-center">
                         <a href="https://drive.google.com/file/d/1s7Sm3h-abXvaxmwo9tw7vGWN8yNQ2iXE/view?usp=sharing"

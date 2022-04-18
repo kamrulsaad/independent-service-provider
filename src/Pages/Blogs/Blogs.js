@@ -35,8 +35,7 @@ export const Blog = () => {
                             Why are we using firebase? What alternatives is there to implement authentication?
                         </p>
                         <p className="mb-2 text-gray-700">
-                            Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                            consequuntur magni voluptatem doloremque.
+                            We are using firebase for the purpose of integrating authentication and authorization system for the users of our web application. Some alternatives of firebase are : Okta, Passport, Auth0, MongoDB, Keycloak etc.
                         </p>
                     </div>
                 </div>
@@ -54,8 +53,7 @@ export const Blog = () => {
                             What other services does firebase provide other than authentication?
                         </p>
                         <p className="mb-2 text-gray-700">
-                            Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                            consequuntur magni voluptatem doloremque.
+                            Including Authentication, Firebase has total 18 services(4 beta services). The other few services by firebase worth mentioning are: Hosting, Cloud Storage, Realtime Database, Cloud Functions, Performance Monitoring etc.
                         </p>
                     </div>
                 </div>

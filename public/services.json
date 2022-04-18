@@ -5,7 +5,7 @@
         "pricing": 38,
         "duration": "day",
         "description": "Birthdays, Aniversaries, Short Wedding Ceremonies, etc.",
-        "img" : "https://images.pexels.com/photos/3184305/pexels-photo-3184305.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+        "img" : "https://i.ibb.co/3YZVRK9/pexels-photo-3183181-1.png"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@
         "pricing": 250,
         "duration": "week",
         "description": "Weddings, Picnics, Fests, Cultural Ocassions. Best Choice till now.",
-        "img" : "https://images.pexels.com/photos/3183181/pexels-photo-3183181.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+        "img" : "https://i.ibb.co/TKM1p4P/pexels-photo-3182743-1.png"
     },
     {
         "id": 3,
@@ -21,6 +21,6 @@
         "pricing": 1200,
         "duration": "mo",
         "description": "Business Trips, Mega Events, Month Long occasions, Field Trips, etc.",
-        "img" : "https://images.pexels.com/photos/3182743/pexels-photo-3182743.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+        "img" : "https://i.ibb.co/HCxv4VN/pexels-photo-3184305-1.png"
     }
 ]
