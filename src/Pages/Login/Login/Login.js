@@ -36,8 +36,7 @@ const Login = () => {
     const handlePasswordReset = async () => {
         const email = emailRef.current.value;
         await sendPasswordResetEmail(email)
-        console.log(resetError);
-        toast( resetError?.message || 'Please Check Your Email to reset your password'  , {position: 'top-center'})
+        toast('Please Check Your Email to reset your password'  , {position: 'top-center'})
     }
 
     return (

@@ -32,7 +32,7 @@ export const Blog = () => {
                         <p
                             className="inline-block mb-3 text-2xl font-bold leading-7 transition-colors duration-200 hover:text-deep-purple-accent-700"
                         >
-                            Why are we using firebase? What alternatives is there to implement authentication?
+                            Why are we using firebase? What alternatives are there to implement authentication?
                         </p>
                         <p className="mb-2 text-gray-700">
                             We are using firebase for the purpose of integrating authentication and authorization system for the users of our web application. Some alternatives of firebase are : Okta, Passport, Auth0, MongoDB, Keycloak etc.

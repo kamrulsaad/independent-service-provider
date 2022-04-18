@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
+import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
@@ -11,12 +10,13 @@ const Register = () => {
     const [agreed, setAgreed] = useState(false)
 
     const [createUserWithEmail, emailUser, emailLoading, emailError] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
-    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth)
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth)   
+    const [facebookSignIn, facebookUser, fbLoading, fbError] = useSignInWithFacebook(auth)
     const [updateProfile, updating, updatingError] = useUpdateProfile(auth)
 
-    const user = emailUser || googleUser;
-    const loading = emailLoading || googleLoading || updating;
-    const error = emailError || googleError || updatingError;
+    const user = emailUser || googleUser || facebookUser;
+    const loading = emailLoading || googleLoading || updating || fbLoading;
+    const error = emailError || googleError || updatingError || fbError;
 
     const navigate = useNavigate();
     const location = useLocation()
@@ -29,7 +29,6 @@ const Register = () => {
         const password = e.target.password.value
         createUserWithEmail(email, password)
         await updateProfile({ displayName: name })
-        toast("Verification email sent, please check your email account" + name , { position: 'bottom-right' })
     }
 
     useEffect(() => { if (user) navigate(from, {replace : true}) }, [navigate, from, user])
@@ -68,6 +67,7 @@ const Register = () => {
 
                                 <button
                                     type="button"
+                                    onClick={() => facebookSignIn() }
                                     data-mdb-ripple="true"
                                     data-mdb-ripple-color="light"
                                     className="inline-block p-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mx-1"
@@ -156,7 +156,6 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer />
         </section>
     );
 };

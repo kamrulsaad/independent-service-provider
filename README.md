@@ -17,7 +17,7 @@ Welcome to my project on Single Photography Service Provider Website.
 
 ## Links
 
-- Live Site Link: [Click Here](https://www.smart-photography-provider.web.app) to see the Live website.
+- Live Site Link: [Click Here](https://smart-photography-provider.web.app/) to see the Live website.
 - Github Repo: [Click Here](https://github.com/programming-hero-web-course-4/independent-service-provider-kamrulsaad) to check my github repo for this project.
 
 ## Home Page Preview
@@ -40,6 +40,7 @@ I have built this website following the requirements provided.
 - `tailwindCSS`
 - `tw-elements`
 - `react-toastify` 
+- Simply tried using `react-hooks-form`
 
 ------
 
