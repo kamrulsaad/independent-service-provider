@@ -64,6 +64,7 @@ const Header = () => {
                         user ?
                             <div className="items-center hidden space-x-8 lg:flex">
                                 {user?.photoURL && <img className="h-9 rounded-full" src={user?.photoURL} alt="" />}
+                                
                                 <button onClick={() => signOut(auth)} className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-700 hover:bg-purple-900 focus:shadow-outline focus:outline-none">Sign Out</button>
                             </div> :
                             <ul className="items-center hidden space-x-8 lg:flex">
